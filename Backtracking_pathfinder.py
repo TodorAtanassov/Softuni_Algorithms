@@ -21,7 +21,6 @@ def find_all_paths(row, col, lab, direction, path):
 
 rows = int(input())
 col = int(input())
-
 lab = []
 
 for i in range(rows):
