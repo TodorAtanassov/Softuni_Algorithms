@@ -1,49 +1,45 @@
 def print_board(board):
     for row in board:
-        print(''.join(row))
+        print(' '.join(row))
     print()
 
 
-def can_place_queen(row, col, rows, cols, LD, RD):
+def can_place_queen(row, col, rows, cols, ld, rd):
     if row in rows:
         return False
     if col in cols:
         return False
-    if row + col in RD:
+    if (row - col) in ld:
         return False
-    if row - col in LD:
+    if (row + col) in rd:
         return False
-
     return True
 
 
-def set_queen(row, col, board, rows, cols, LD, RD):
+def set_queen(row, col, board, rows, cols, ld, rd):
     board[row][col] = '*'
     rows.add(row)
     cols.add(col)
-    LD.add(row - col)
-    RD.add(row + col)
+    ld.add(row - col)
+    rd.add(row + col)
 
 
-def remove_queens(row, col, board, rows, cols, LD, RD):
+def remove_queen(row, col, board, rows, cols, ld, rd):
     board[row][col] = '-'
     rows.remove(row)
     cols.remove(col)
-    LD.remove(row - col)
-    RD.remove(row + col)
+    ld.remove(row - col)
+    rd.remove(row + col)
 
-
-def put_queens(row, board, rows, cols, LD, RD):
+def put_queens(row, board, rows, cols, ld, rd):
     if row == 8:
-        print(board)
+        print_board(board)
         return
     for col in range(8):
-        if can_place_queen(row, col):
-            set_queen(row, col, board, rows, cols, LD, RD)
-            put_queens(row + 1, board, rows, cols, LD, RD)
-            remove_queens(row, col, board, rows, cols, LD, RD)
-
-
+        if can_place_queen(row, col, rows, cols, ld, rd):
+            set_queen(row, col, board, rows, cols, ld, rd)
+            put_queens(row+1, board, rows, cols, ld, rd)
+            remove_queen(row, col, board, rows, cols, ld, rd)
 
 
 n = 8
@@ -52,4 +48,3 @@ board = []
 print(board)
 
 put_queens(0, board, set(), set(), set(), set())
-
