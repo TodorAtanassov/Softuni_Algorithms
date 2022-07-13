@@ -45,6 +45,6 @@ def put_queens(row, board, rows, cols, ld, rd):
 n = 8
 board = []
 [board.append(['-'] * n) for _ in range(8)]
-print(board)
+
 
 put_queens(0, board, set(), set(), set(), set())
