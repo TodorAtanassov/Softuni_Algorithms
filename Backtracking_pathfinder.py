@@ -1,11 +1,14 @@
 def find_all_paths(row, col, lab, direction, path):
     if row < 0 or col < 0 or row >= len(lab) or col >= len(lab[0]):
         return
+
     if lab[row][col] == '*':
         return
     if lab[row][col] == 'v':
         return
+
     path.append(direction)
+
     if lab[row][col] == 'e':
         print(''.join(path))
     else:
@@ -16,7 +19,7 @@ def find_all_paths(row, col, lab, direction, path):
         find_all_paths(row - 1, col, lab, 'U', path)
         lab[row][col] = '-'
 
-        path.pop()
+    path.pop()
 
 
 rows = int(input())
