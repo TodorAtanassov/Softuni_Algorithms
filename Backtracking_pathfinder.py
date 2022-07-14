@@ -1,7 +1,6 @@
 def find_all_paths(row, col, lab, direction, path):
     if row < 0 or col < 0 or row >= len(lab) or col >= len(lab[0]):
         return
-
     if lab[row][col] == '*':
         return
     if lab[row][col] == 'v':
