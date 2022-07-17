@@ -10,3 +10,12 @@ elements = input().split()
 
 reverse_array(0, elements)
 print(' '.join(elements))
+
+##
+
+elements = input().split()
+for left in range(len(elements) // 2):
+    right = len(elements) - 1 - left
+    elements[left], elements[right] = elements[right], elements[left]
+
+print(' '.join(elements))
