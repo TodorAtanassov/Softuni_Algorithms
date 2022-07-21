@@ -1,13 +1,22 @@
+class Area:
+    def __init__(self, row, col, size):
+        self.row = row
+        self.col = col
+        self.size = size
+       
+        
 def explore_area(row, col, matrix):
-    if row < 0 or col < 0 or row >= len(matrix) or col >= (len(matrix[0])):
+    if row < 0 or col < 0 or row >= len(matrix) or col >= len(matrix[0]):
         return
-    if matrix == '*':
+    if matrix != '-':
         return
     matrix[row][col] = 'v'
-    explore_area(row - 1, col, matrix)
-    explore_area(row + 1, col, matrix)
-    explore_area(row, col - 1, matrix)
-    explore_area(row, col + 1, matrix)
+    result = 1
+    result += explore_area(row - 1, col, matrix)
+    result += explore_area(row + 1, col, matrix)
+    result += explore_area(row, col - 1, matrix)
+    result += explore_area(row, col + 1, matrix)
+    return result
 
 
 rows = int(input())
@@ -16,10 +25,10 @@ cols = int(input())
 matrix = []
 for _ in range(rows):
     matrix.append(list(input()))
-
+areas = []
 for row in range(rows):
     for col in range(cols):
         size = explore_area(row, col, matrix)
-
-for row in matrix:
-    print(row)
+        if size == 0:
+            continue
+        areas.append(Area(row, col, size))
