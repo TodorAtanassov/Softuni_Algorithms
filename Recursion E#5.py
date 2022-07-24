@@ -15,8 +15,8 @@ for word in words:
         while True:
             idx = target.index(word, idx)
 
-        if idx not in words_by_idx:
-            words_by_idx[idx] = []
+            if idx not in words_by_idx:
+                words_by_idx[idx] = []
             words_by_idx[idx].append(word)
             idx += len(word)
     except ValueError:
