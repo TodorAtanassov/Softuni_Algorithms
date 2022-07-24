@@ -22,9 +22,6 @@ for word in words:
     except ValueError:
         pass
 
-print(words_by_idx)
-print(words_count)
-
 
 def find_all_solutions(idx, target, words_by_idx, words_count, used_words):
     if idx >= len(target):
@@ -34,13 +31,12 @@ def find_all_solutions(idx, target, words_by_idx, words_count, used_words):
         return
     for word in words_by_idx[idx]:
         used_words.append(word)
-        words_count -= 1
+        words_count[word] -= 1
 
         find_all_solutions(idx + len(word), target, words_by_idx, words_count, used_words)
 
         used_words.pop()
-        words_count += 1
-
+        words_count[word] += 1
 
 
 find_all_solutions(0, target, words_by_idx, words_count, [])
