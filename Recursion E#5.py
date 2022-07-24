@@ -24,3 +24,23 @@ for word in words:
 
 print(words_by_idx)
 print(words_count)
+
+
+def find_all_solutions(idx, target, words_by_idx, words_count, used_words):
+    if idx >= len(target):
+        print(' '.join(used_words))
+        return
+    if idx not in words_by_idx:
+        return
+    for word in words_by_idx[idx]:
+        used_words.append(word)
+        words_count -= 1
+
+        find_all_solutions(idx + len(word), target, words_by_idx, words_count, used_words)
+
+        used_words.pop()
+        words_count += 1
+
+
+
+find_all_solutions(0, target, words_by_idx, words_count, [])
